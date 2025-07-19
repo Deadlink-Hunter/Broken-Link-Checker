@@ -238,4 +238,4 @@ The application uses the following default configuration:
 
 ## License
 
-ISC
+You can see the [lisence](https://github.com/Deadlink-Hunter/Broken-Link-Checker/blob/main/LICENSE) file

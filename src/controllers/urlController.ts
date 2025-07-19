@@ -21,6 +21,8 @@ export const checkSingleUrl = async (
       return;
     }
 
+    console.log("This is a check for branch protection")
+
     const result: UrlCheckResult = await checkUrl(url);
 
     res.status(200).json({

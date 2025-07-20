@@ -6,6 +6,8 @@ import {
   HTTP_STATUS_INTERNAL_SERVER_ERROR,
 } from '@constant';
 
+import { ERROR_MESSAGES, SUCCESS_MESSAGES } from '../constants';
+
 export const checkSingleUrl = async (
   req: Request,
   res: Response
@@ -27,13 +29,13 @@ export const checkSingleUrl = async (
       success: true,
       data: result,
       message: result.isBroken
-        ? 'URL check completed - URL is broken'
-        : 'URL check completed - URL is working',
+        ? SUCCESS_MESSAGES.SINGLE_CHECK_BROKEN
+        : SUCCESS_MESSAGES.SINGLE_CHECK_WORKING,
     });
   } catch (error: any) {
     res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({
       success: false,
-      error: 'Internal server error',
+      error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
       message: error.message,
     });
   }
@@ -49,7 +51,7 @@ export const checkMultipleUrlsController = async (
     if (!urls || !Array.isArray(urls)) {
       res.status(HTTP_STATUS_BAD_REQUEST).json({
         success: false,
-        error: 'URLs array is required',
+        error: ERROR_MESSAGES.URLS_ARRAY_REQUIRED,
       });
       return;
     }
@@ -57,7 +59,7 @@ export const checkMultipleUrlsController = async (
     if (urls.length === 0) {
       res.status(HTTP_STATUS_BAD_REQUEST).json({
         success: false,
-        error: 'At least one URL is required',
+        error: ERROR_MESSAGES.AT_LEAST_ONE_URL,
       });
       return;
     }
@@ -65,7 +67,7 @@ export const checkMultipleUrlsController = async (
     if (urls.length > MAX_URLS_PER_REQUEST) {
       res.status(HTTP_STATUS_BAD_REQUEST).json({
         success: false,
-        error: `Maximum ${MAX_URLS_PER_REQUEST} URLs allowed per request`,
+        error: ERROR_MESSAGES.MAX_URLS_EXCEEDED(MAX_URLS_PER_REQUEST),
       });
       return;
     }
@@ -84,12 +86,12 @@ export const checkMultipleUrlsController = async (
         results,
         summary,
       },
-      message: `URL check completed - ${summary.working} working, ${summary.broken} broken`,
+      message: SUCCESS_MESSAGES.MULTIPLE_CHECK_SUMMARY(summary.working, summary.broken),
     });
   } catch (error: any) {
     res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({
       success: false,
-      error: 'Internal server error',
+      error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
       message: error.message,
     });
   }
@@ -98,7 +100,7 @@ export const checkMultipleUrlsController = async (
 export const healthCheck = (req: Request, res: Response): void => {
   res.json({
     success: true,
-    message: 'URL Checker API is running',
+    message: SUCCESS_MESSAGES.HEALTH_CHECK,
     timestamp: new Date().toISOString(),
   });
 };

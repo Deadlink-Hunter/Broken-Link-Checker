@@ -4,9 +4,11 @@ import {
   MAX_URLS_PER_REQUEST,
   HTTP_STATUS_BAD_REQUEST,
   HTTP_STATUS_INTERNAL_SERVER_ERROR,
+  ERROR_MESSAGES,
+  SUCCESS_MESSAGES,
 } from '@constant';
 
-import { ERROR_MESSAGES, SUCCESS_MESSAGES } from '../constants';
+import { maxUrlsExceededMessage } from '@/utils/errors';
 
 export const checkSingleUrl = async (
   req: Request,
@@ -18,7 +20,7 @@ export const checkSingleUrl = async (
     if (!url) {
       res.status(HTTP_STATUS_BAD_REQUEST).json({
         success: false,
-        error: 'URL is required',
+        error: ERROR_MESSAGES.URL_REQUIRED,
       });
       return;
     }
@@ -67,7 +69,7 @@ export const checkMultipleUrlsController = async (
     if (urls.length > MAX_URLS_PER_REQUEST) {
       res.status(HTTP_STATUS_BAD_REQUEST).json({
         success: false,
-        error: ERROR_MESSAGES.MAX_URLS_EXCEEDED(MAX_URLS_PER_REQUEST),
+        error: maxUrlsExceededMessage(MAX_URLS_PER_REQUEST),
       });
       return;
     }

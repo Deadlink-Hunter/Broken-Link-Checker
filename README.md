@@ -238,4 +238,13 @@ The application uses the following default configuration:
 
 ## License
 
-You can see the [lisence](https://github.com/Deadlink-Hunter/Broken-Link-Checker/blob/main/LICENSE) file
+
+You can see the [licence](https://github.com/Deadlink-Hunter/Broken-Link-Checker/blob/main/LICENSE) file
+
+## Contributors
+
+Thanks to all the amazing contributors:
+
+<a href="https://github.com/Deadlink-Hunter/Broken-Link-Checker/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Deadlink-Hunter/Broken-Link-Checker" alt="Contributors" />
+</a>

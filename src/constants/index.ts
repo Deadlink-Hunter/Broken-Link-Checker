@@ -6,3 +6,16 @@ export const HTTP_STATUS_OK = 200;
 export const HTTP_STATUS_BAD_REQUEST = 400;
 export const HTTP_STATUS_NOT_FOUND = 404;
 export const HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
+
+export const ERROR_MESSAGES = {
+  URL_REQUIRED: 'URL is required',
+  URLS_ARRAY_REQUIRED: 'URLs array is required',
+  AT_LEAST_ONE_URL: 'At least one URL is required',
+  INTERNAL_SERVER_ERROR: 'Internal server error',
+};
+
+export const SUCCESS_MESSAGES = {
+  SINGLE_URL_WORKING: 'URL check completed - URL is working',
+  SINGLE_URL_BROKEN: 'URL check completed - URL is broken',
+  API_HEALTHY: 'URL Checker API is running',
+};

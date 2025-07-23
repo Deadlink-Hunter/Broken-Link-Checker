@@ -8,7 +8,7 @@ import {
   SUCCESS_MESSAGES,
 } from '@constant';
 
-import { maxUrlsExceededMessage } from '@/utils/errors';
+import { getMaxUrlsExceededMessage, getMultipleUrlsCheckSummary  } from '@/utils/errors';
 
 export const checkSingleUrl = async (
   req: Request,
@@ -69,7 +69,7 @@ export const checkMultipleUrlsController = async (
     if (urls.length > MAX_URLS_PER_REQUEST) {
       res.status(HTTP_STATUS_BAD_REQUEST).json({
         success: false,
-        error: maxUrlsExceededMessage(MAX_URLS_PER_REQUEST),
+        error: getMaxUrlsExceededMessage(MAX_URLS_PER_REQUEST),
       });
       return;
     }
@@ -88,7 +88,7 @@ export const checkMultipleUrlsController = async (
         results,
         summary,
       },
-      message: SUCCESS_MESSAGES.MULTIPLE_URLS_RESULT(summary.working, summary.broken),
+      message: getMultipleUrlsCheckSummary(summary.working, summary.broken),
     });
   } catch (error: any) {
     res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({

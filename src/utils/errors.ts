@@ -1,2 +1,5 @@
-export const maxUrlsExceededMessage = (max: number): string =>
-  `Maximum ${max} URLs allowed per request`;
+export const getMaxUrlsExceededMessage = (maxUrls: number) =>
+  `Maximum ${maxUrls} URLs allowed per request`;
+
+export const getMultipleUrlsCheckSummary = (working: number, broken: number) =>
+  `URL check completed - ${working} working, ${broken} broken`;

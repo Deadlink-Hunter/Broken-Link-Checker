@@ -17,7 +17,5 @@ export const ERROR_MESSAGES = {
 export const SUCCESS_MESSAGES = {
   SINGLE_URL_WORKING: 'URL check completed - URL is working',
   SINGLE_URL_BROKEN: 'URL check completed - URL is broken',
-  MULTIPLE_URLS_RESULT: (working: number, broken: number) =>
-    `URL check completed - ${working} working, ${broken} broken`,
   API_HEALTHY: 'URL Checker API is running',
 };

@@ -6,7 +6,9 @@ We've all seen README files that are outdated, full of links that lead nowhere.
 
 This project was created to solve that.
 Its goal is simple: scan README files and report broken links, so it's easier to keep documentation clean, useful, and frustration-free.
-This repo is for checking the validady of the links via http request
+This repo is for checking the validady of the links via http request.
+
+You can also check https://github.com/Deadlink-Hunter/Broken-Link-Website , this is the website where the user can insert some links to check.
 ____
 
 A TypeScript Express application that checks if URLs are broken or not. Built with ES modules syntax, pnpm package manager, and follows the MVC pattern.

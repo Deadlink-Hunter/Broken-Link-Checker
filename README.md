@@ -1,5 +1,28 @@
 # Broken Link Checker
 
+
+## Table of Contents
+- [Why This Project Exists](#why-this-project-exists)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Development](#development)
+- [API Documentation](#api-documentation)
+- [Production](#production)
+- [API Endpoints](#api-endpoints)
+    - [Health Check](#1-health-check)
+    - [Check Single URL](#2-check-single-url)
+    - [Check Multiple URLs](#3-check-multiple-urls)
+- [Error Responses](#error-responses)
+- [Project Structure](#project-structure)
+- [Architecture](#architecture)
+- [Technologies Used](#technologies-used)
+- [Configuration Defaults](#configuration-defaults)
+- [Development Scripts](#development-scripts)
+- [License](#license)
+- [Contributors](#contributors)
+
+
 ## Why This Project Exists ❓ 
 Broken links in open source projects are a common pain.
 We've all seen README files that are outdated, full of links that lead nowhere.

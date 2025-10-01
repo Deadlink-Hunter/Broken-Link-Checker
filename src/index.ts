@@ -3,6 +3,7 @@ import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import urlRoutes from '@route';
 import { specs } from '@config';
+import { cleanupJob } from './jobs/cleanupJob';
 import {
   DEFAULT_PORT,
   HTTP_STATUS_NOT_FOUND,
@@ -36,6 +37,9 @@ app.get('/', (req, res) => {
       'POST /api/check-url': 'Check if a single URL is broken',
       'POST /api/check-urls': 'Check multiple URLs at once',
       'GET /api/health': 'Health check endpoint',
+      'GET /api/statistics': 'Get comprehensive statistics about URL checks',
+      'GET /api/recent-checks': 'Get recent URL checks with optional limit',
+      'GET /api/checks-by-date': 'Get URL checks within a date range',
     },
   });
 });
@@ -70,4 +74,23 @@ app.listen(PORT, () => {
   console.log(
     `🏥 Health check available at http://localhost:${PORT}/api/health`
   );
+  console.log(
+    `📊 Statistics available at http://localhost:${PORT}/api/statistics`
+  );
+  
+  // Start the cleanup job (runs every 24 hours)
+  cleanupJob.start(24);
+});
+
+// Graceful shutdown
+process.on('SIGINT', () => {
+  console.log('\n🛑 Shutting down gracefully...');
+  cleanupJob.stop();
+  process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+  console.log('\n🛑 Shutting down gracefully...');
+  cleanupJob.stop();
+  process.exit(0);
 });

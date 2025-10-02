@@ -69,6 +69,113 @@ Start the production server:
 pnpm start
 ```
 
+## Docker 🐳
+
+This application includes Docker support for easy deployment and containerization.
+
+### Prerequisites
+
+- Docker installed on your system
+- Docker Compose (optional, for easier management)
+
+### Building the Docker Image
+
+Build the Docker image locally:
+
+```bash
+docker build -t broken-link-checker .
+```
+
+### Running the Container
+
+Run the container and map port 3000:
+
+```bash
+docker run -p 3000:3000 broken-link-checker
+```
+
+The application will be available at `http://localhost:3000`
+
+### Running in Detached Mode
+
+To run the container in the background:
+
+```bash
+docker run -d -p 3000:3000 --name broken-link-checker-app broken-link-checker
+```
+
+### Container Management Commands
+
+**Stop the container:**
+```bash
+docker stop broken-link-checker-app
+```
+
+**Start the container:**
+```bash
+docker start broken-link-checker-app
+```
+
+**Remove the container:**
+```bash
+docker rm broken-link-checker-app
+```
+
+**View container logs:**
+```bash
+docker logs broken-link-checker-app
+```
+
+**View running containers:**
+```bash
+docker ps
+```
+
+### Environment Variables
+
+You can pass environment variables to customize the application:
+
+```bash
+docker run -p 3000:3000 -e PORT=4000 broken-link-checker
+```
+
+### Docker Compose (Optional)
+
+Create a `docker-compose.yml` file for easier container management:
+
+```yaml
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    restart: unless-stopped
+```
+
+Then run:
+
+```bash
+# Start the service
+docker-compose up -d
+
+# Stop the service
+docker-compose down
+
+# View logs
+docker-compose logs -f
+```
+
+### Docker Best Practices
+
+- The Dockerfile uses Node.js 18 slim image for smaller size
+- Dependencies are installed using pnpm for faster builds
+- The application is built during the Docker build process
+- Port 3000 is exposed by default
+- The container runs the production build (`pnpm start`)
+
 ## API Endpoints
 
 ### Health Check

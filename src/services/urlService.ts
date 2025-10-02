@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { HTTP_TIMEOUT, MAX_REDIRECTS } from '@constant';
+import { FAILED_REQUEST, HTTP_TIMEOUT, INVALID_URL_FORMAT, MAX_REDIRECTS } from '@constant';
 
 export interface UrlCheckResult {
   url: string;
@@ -26,7 +26,7 @@ export const checkUrl = async (url: string): Promise<UrlCheckResult> => {
       return {
         url,
         isBroken: true,
-        error: 'Invalid URL format',
+        error: INVALID_URL_FORMAT,
       };
     }
 
@@ -51,7 +51,7 @@ export const checkUrl = async (url: string): Promise<UrlCheckResult> => {
       url,
       isBroken: true,
       statusCode: error.response?.status,
-      error: error.message || 'Request failed',
+      error: error.message || FAILED_REQUEST,
       responseTime,
     };
   }

@@ -104,15 +104,6 @@ To run the container in the background:
 docker run -d -p 3000:3000 --name broken-link-checker-app broken-link-checker
 ```
 
-
-### Docker Best Practices
-
-- The Dockerfile uses Node.js 18 slim image for smaller size
-- Dependencies are installed using pnpm for faster builds
-- The application is built during the Docker build process
-- Port 3000 is exposed by default
-- The container runs the production build (`pnpm start`)
-
 ## API Endpoints
 
 ### Health Check

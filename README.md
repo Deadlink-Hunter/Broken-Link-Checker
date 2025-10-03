@@ -7,6 +7,7 @@
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Development](#development)
+- [Docker](#Docker)
 - [API Documentation](#api-documentation)
 - [Production](#production)
 - [API Endpoints](#api-endpoints)

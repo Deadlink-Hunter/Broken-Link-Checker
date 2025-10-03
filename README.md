@@ -104,69 +104,6 @@ To run the container in the background:
 docker run -d -p 3000:3000 --name broken-link-checker-app broken-link-checker
 ```
 
-### Container Management Commands
-
-**Stop the container:**
-```bash
-docker stop broken-link-checker-app
-```
-
-**Start the container:**
-```bash
-docker start broken-link-checker-app
-```
-
-**Remove the container:**
-```bash
-docker rm broken-link-checker-app
-```
-
-**View container logs:**
-```bash
-docker logs broken-link-checker-app
-```
-
-**View running containers:**
-```bash
-docker ps
-```
-
-### Environment Variables
-
-You can pass environment variables to customize the application:
-
-```bash
-docker run -p 3000:3000 -e PORT=4000 broken-link-checker
-```
-
-### Docker Compose (Optional)
-
-Create a `docker-compose.yml` file for easier container management:
-
-```yaml
-version: '3.8'
-services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
-    restart: unless-stopped
-```
-
-Then run:
-
-```bash
-# Start the service
-docker-compose up -d
-
-# Stop the service
-docker-compose down
-
-# View logs
-docker-compose logs -f
-```
 
 ### Docker Best Practices
 

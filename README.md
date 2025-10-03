@@ -92,6 +92,41 @@ Start the production server:
 pnpm start
 ```
 
+## Docker 🐳
+
+This application includes Docker support for easy deployment and containerization.
+
+### Prerequisites
+
+- Docker installed on your system
+- Docker Compose (optional, for easier management)
+
+### Building the Docker Image
+
+Build the Docker image locally:
+
+```bash
+docker build -t broken-link-checker .
+```
+
+### Running the Container
+
+Run the container and map port 3000:
+
+```bash
+docker run -p 3000:3000 broken-link-checker
+```
+
+The application will be available at `http://localhost:3000`
+
+### Running in Detached Mode
+
+To run the container in the background:
+
+```bash
+docker run -d -p 3000:3000 --name broken-link-checker-app broken-link-checker
+```
+
 ## API Endpoints
 
 ### Health Check

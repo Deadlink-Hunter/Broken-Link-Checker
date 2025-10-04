@@ -3,6 +3,9 @@ import {
   checkSingleUrl,
   checkMultipleUrlsController,
   healthCheck,
+  getStatistics,
+  getRecentChecks,
+  getChecksByDateRange,
 } from '@controller';
 
 const router: Router = Router();
@@ -128,5 +131,92 @@ router.post('/check-urls', checkMultipleUrlsController);
  *               $ref: '#/components/schemas/HealthResponse'
  */
 router.get('/health', healthCheck);
+
+/**
+ * @swagger
+ * /api/statistics:
+ *   get:
+ *     summary: Get URL checking statistics
+ *     description: Retrieve comprehensive statistics about URL checks including totals, broken vs working URLs, and time-based metrics
+ *     tags: [Statistics]
+ *     responses:
+ *       200:
+ *         description: Statistics retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/StatisticsResponse'
+ *       500:
+ *         description: Internal server error
+ */
+router.get('/statistics', getStatistics);
+
+/**
+ * @swagger
+ * /api/recent-checks:
+ *   get:
+ *     summary: Get recent URL checks
+ *     description: Retrieve the most recent URL checks with optional limit
+ *     tags: [Statistics]
+ *     parameters:
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 1000
+ *           default: 50
+ *         description: Maximum number of recent checks to retrieve
+ *     responses:
+ *       200:
+ *         description: Recent checks retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/RecentChecksResponse'
+ *       400:
+ *         description: Bad request - Invalid limit
+ *       500:
+ *         description: Internal server error
+ */
+router.get('/recent-checks', getRecentChecks);
+
+/**
+ * @swagger
+ * /api/checks-by-date:
+ *   get:
+ *     summary: Get URL checks by date range
+ *     description: Retrieve URL checks within a specific date range
+ *     tags: [Statistics]
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Start date in YYYY-MM-DD format
+ *         example: "2024-01-01"
+ *       - in: query
+ *         name: endDate
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: End date in YYYY-MM-DD format
+ *         example: "2024-01-31"
+ *     responses:
+ *       200:
+ *         description: Checks retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/DateRangeChecksResponse'
+ *       400:
+ *         description: Bad request - Invalid or missing dates
+ *       500:
+ *         description: Internal server error
+ */
+router.get('/checks-by-date', getChecksByDateRange);
 
 export default router;

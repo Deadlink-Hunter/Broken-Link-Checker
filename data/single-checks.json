@@ -1,0 +1,13 @@
+[
+  {
+    "id": "test-123",
+    "url": "https://example.com",
+    "isBroken": false,
+    "statusCode": 200,
+    "responseTime": 150,
+    "timestamp": "2025-10-01T06:39:17.487Z",
+    "metadata": {
+      "userAgent": "test-agent"
+    }
+  }
+]

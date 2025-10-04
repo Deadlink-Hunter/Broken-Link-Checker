@@ -1,0 +1,12 @@
+{
+  "id": "demo-001",
+  "url": "https://example.com",
+  "isBroken": false,
+  "statusCode": 200,
+  "responseTime": 145,
+  "timestamp": "2024-10-01T12:00:00.000Z",
+  "metadata": {
+    "userAgent": "Demo-Agent/1.0",
+    "ip": "127.0.0.1"
+  }
+}

@@ -1,12 +1,38 @@
 # Broken Link Checker
 
+
+## Table of Contents
+- [Why This Project Exists](#why-this-project-exists)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Development](#development)
+- [Docker](#docker)
+- [API Documentation](#api-documentation)
+- [Production](#production)
+- [API Endpoints](#api-endpoints)
+    - [Health Check](#1-health-check)
+    - [Check Single URL](#2-check-single-url)
+    - [Check Multiple URLs](#3-check-multiple-urls)
+- [Error Responses](#error-responses)
+- [Project Structure](#project-structure)
+- [Architecture](#architecture)
+- [Technologies Used](#technologies-used)
+- [Configuration Defaults](#configuration-defaults)
+- [Development Scripts](#development-scripts)
+- [License](#license)
+- [Contributors](#contributors)
+
+
 ## Why This Project Exists ❓ 
 Broken links in open source projects are a common pain.
 We've all seen README files that are outdated, full of links that lead nowhere.
 
 This project was created to solve that.
 Its goal is simple: scan README files and report broken links, so it's easier to keep documentation clean, useful, and frustration-free.
-This repo is for checking the validady of the links via http request
+This repo is for checking the validady of the links via http request.
+
+You can also check https://github.com/Deadlink-Hunter/Broken-Link-Website , this is the website where the user can insert some links to check.
 ____
 
 A TypeScript Express application that checks if URLs are broken or not. Built with ES modules syntax, pnpm package manager, and follows the MVC pattern.
@@ -65,6 +91,41 @@ Start the production server:
 
 ```bash
 pnpm start
+```
+
+## Docker 🐳
+
+This application includes Docker support for easy deployment and containerization.
+
+### Prerequisites
+
+- Docker installed on your system
+- Docker Compose (optional, for easier management)
+
+### Building the Docker Image
+
+Build the Docker image locally:
+
+```bash
+docker build -t broken-link-checker .
+```
+
+### Running the Container
+
+Run the container and map port 3000:
+
+```bash
+docker run -p 3000:3000 broken-link-checker
+```
+
+The application will be available at `http://localhost:3000`
+
+### Running in Detached Mode
+
+To run the container in the background:
+
+```bash
+docker run -d -p 3000:3000 --name broken-link-checker-app broken-link-checker
 ```
 
 ## API Endpoints

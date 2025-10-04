@@ -1,8 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
-import { v4 as uuidv4 } from 'uuid';
-import { HTTP_TIMEOUT, MAX_REDIRECTS } from '@constant';
-import { storageService } from './storageService';
-import { UrlCheckRecord, BulkCheckRecord } from '../types/storage';
+
+import { FAILED_REQUEST, HTTP_TIMEOUT, INVALID_URL_FORMAT, MAX_REDIRECTS } from '@constant';
+
 
 export interface UrlCheckResult {
   url: string;
@@ -32,7 +31,7 @@ export const checkUrl = async (
       const result = {
         url,
         isBroken: true,
-        error: 'Invalid URL format',
+        error: INVALID_URL_FORMAT,
       };
 
       // Store the result
@@ -79,7 +78,7 @@ export const checkUrl = async (
       url,
       isBroken: true,
       statusCode: error.response?.status,
-      error: error.message || 'Request failed',
+      error: error.message || FAILED_REQUEST,
       responseTime,
     };
 

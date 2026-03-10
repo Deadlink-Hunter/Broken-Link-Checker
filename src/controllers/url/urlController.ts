@@ -1,24 +1,28 @@
-import { Request, Response } from 'express';
-import { checkUrl, checkMultipleUrls, UrlCheckResult } from '@/services/urlService';
-import { appendResults, appendResult } from '@/services/urlRecordsService';
+import { Request, Response } from "express";
 import {
-    MAX_URLS_PER_REQUEST,
-    HTTP_STATUS_BAD_REQUEST,
-    HTTP_STATUS_INTERNAL_SERVER_ERROR,
-    URL_REQUIRED,
-    URL_BROKEN,
-    URL_WORKING,
-    INTERNAL_SERVER_ERROR,
-    URLS_ARRAY_REQUIRED,
-    ONE_URL_REQUIRED,
-    MAXIMUM_URLS_ALLOWED,
-    URL_CHECK_COMPLETED,
-    HEALTH_CHECK_MESSAGE,
-} from '@constant';
+  checkUrl,
+  checkMultipleUrls,
+  UrlCheckResult,
+} from "@/services/urlService";
+import { appendResults, appendResult } from "@/services/urlRecordsService";
+import {
+  MAX_URLS_PER_REQUEST,
+  HTTP_STATUS_BAD_REQUEST,
+  HTTP_STATUS_INTERNAL_SERVER_ERROR,
+  URL_REQUIRED,
+  URL_BROKEN,
+  URL_WORKING,
+  INTERNAL_SERVER_ERROR,
+  URLS_ARRAY_REQUIRED,
+  ONE_URL_REQUIRED,
+  MAXIMUM_URLS_ALLOWED,
+  URL_CHECK_COMPLETED,
+  HEALTH_CHECK_MESSAGE,
+} from "@constant";
 
 export const checkSingleUrl = async (
   req: Request,
-  res: Response
+  res: Response,
 ): Promise<void> => {
   try {
     const { url } = req.body;
@@ -38,9 +42,7 @@ export const checkSingleUrl = async (
     res.status(200).json({
       success: true,
       data: result,
-      message: result.isBroken
-        ? URL_BROKEN
-        : URL_WORKING,
+      message: result.isBroken ? URL_BROKEN : URL_WORKING,
     });
   } catch (error: any) {
     res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({
@@ -53,7 +55,7 @@ export const checkSingleUrl = async (
 
 export const checkMultipleUrlsController = async (
   req: Request,
-  res: Response
+  res: Response,
 ): Promise<void> => {
   try {
     const { urls } = req.body;

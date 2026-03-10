@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { HEALTH_CHECK_MESSAGE } from '@constant';
+import { Request, Response } from "express";
+import { HEALTH_CHECK_MESSAGE } from "@constant";
 
 export const healthCheck = (req: Request, res: Response): void => {
   res.json({

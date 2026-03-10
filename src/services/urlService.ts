@@ -1,5 +1,10 @@
-import axios, { AxiosResponse } from 'axios';
-import { FAILED_REQUEST, HTTP_TIMEOUT, INVALID_URL_FORMAT, MAX_REDIRECTS } from '@constant';
+import axios, { AxiosResponse } from "axios";
+import {
+  FAILED_REQUEST,
+  HTTP_TIMEOUT,
+  INVALID_URL_FORMAT,
+  MAX_REDIRECTS,
+} from "@constant";
 
 export interface UrlCheckResult {
   url: string;
@@ -58,7 +63,7 @@ export const checkUrl = async (url: string): Promise<UrlCheckResult> => {
 };
 
 export const checkMultipleUrls = async (
-  urls: string[]
+  urls: string[],
 ): Promise<UrlCheckResult[]> => {
   const promises = urls.map((url) => checkUrl(url));
   return Promise.all(promises);

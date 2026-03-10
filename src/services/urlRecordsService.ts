@@ -1,12 +1,12 @@
-import path from 'path';
-import { UrlCheckResult } from '@/services/urlService';
-import { appendToJsonArrayFile } from '@/services/jsonFileService';
+import path from "path";
+import { UrlCheckResult } from "@/services/urlService";
+import { appendToJsonArrayFile } from "@/services/jsonFileService";
 
-const DATA_DIRECTORY_NAME = 'data';
+const DATA_DIRECTORY_NAME = "data";
 const MONTH_OFFSET = 1;
 const PAD_LENGTH = 2;
-const PAD_CHARACTER = '0';
-const ERROR_MESSAGE_SAVE_RESULTS = 'Error saving URL check results to file:';
+const PAD_CHARACTER = "0";
+const ERROR_MESSAGE_SAVE_RESULTS = "Error saving URL check results to file:";
 const DATA_DIR = path.join(process.cwd(), DATA_DIRECTORY_NAME);
 
 export interface UrlCheckRecord {
@@ -22,7 +22,10 @@ const getTodayDateComponents = (): {
 } => {
   const today = new Date();
   const year = today.getFullYear();
-  const month = String(today.getMonth() + MONTH_OFFSET).padStart(PAD_LENGTH, PAD_CHARACTER);
+  const month = String(today.getMonth() + MONTH_OFFSET).padStart(
+    PAD_LENGTH,
+    PAD_CHARACTER,
+  );
   const day = String(today.getDate()).padStart(PAD_LENGTH, PAD_CHARACTER);
   const dateString = `${year}-${month}-${day}`;
   return { year, month, day, dateString };
@@ -39,14 +42,12 @@ const getTodayFilePath = (): string => {
   return path.join(yearMonthPath, `${dateString}.json`);
 };
 
-export const appendResult = async (
-  result: UrlCheckResult
-): Promise<void> => {
+export const appendResult = async (result: UrlCheckResult): Promise<void> => {
   return appendResults([result]);
-}
+};
 
 export const appendResults = async (
-  results: UrlCheckResult[]
+  results: UrlCheckResult[],
 ): Promise<void> => {
   try {
     const filePath = getTodayFilePath();
@@ -62,4 +63,3 @@ export const appendResults = async (
     console.error(ERROR_MESSAGE_SAVE_RESULTS, error);
   }
 };
-

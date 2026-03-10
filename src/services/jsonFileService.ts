@@ -1,4 +1,4 @@
-import { stat, open } from 'fs';
+import { open, stat } from 'node:fs/promises';
 import { 
   ensureDataDirectoryExists, 
   FileSystemError 

@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { mkdir } from 'node:fs/promises';
 import { getYearMonthPath } from '@/services/urlRecordsService';
 
 export interface FileSystemError extends Error {
@@ -7,5 +7,5 @@ export interface FileSystemError extends Error {
 
 export const ensureDataDirectoryExists = async (): Promise<void> => {
   const yearMonthPath = getYearMonthPath();
-  await fs.mkdir(yearMonthPath, { recursive: true });
+  await mkdir(yearMonthPath, { recursive: true });
 };

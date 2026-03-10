@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { healthCheck } from '@/controllers/healthCheck/health';
+import { Router } from "express";
+import { healthCheck } from "@/controllers/healthCheck/health";
 
 const router: Router = Router();
 
@@ -18,7 +18,6 @@ const router: Router = Router();
  *             schema:
  *               $ref: '#/components/schemas/HealthResponse'
  */
-router.get('/health', healthCheck);
+router.get("/health", healthCheck);
 
 export default router;
-

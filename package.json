@@ -8,7 +8,10 @@
     "build": "tsc && tsc-alias", 
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
-    "test": "vitest"
+    "test": "vitest",
+    "eslint": "eslint \"src/**/*.ts\"",
+    "prettier:write": "prettier --write \"src/**/*.ts\"",
+    "prepare": "husky"
   },
   "keywords": [
     "express",
@@ -43,7 +46,8 @@
     "tsx": "^4.1.0",
     "typescript": "^5.2.2",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.0.15"
+    "vitest": "^4.0.15",
+    "husky": "^9.1.7"
   },
   "tsx": {
     "tsconfig": "./tsconfig.json"

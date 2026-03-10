@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+pnpm run prettier:write
+pnpm run eslint
+pnpm run build
+
+echo "Pre-commit checks passed."
+

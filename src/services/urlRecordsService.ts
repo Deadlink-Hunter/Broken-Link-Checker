@@ -1,6 +1,6 @@
 import path from "path";
-import { UrlCheckResult } from "@/services/urlService";
-import { appendToJsonArrayFile } from "@/services/jsonFileService";
+import { UrlCheckResult } from "@urlService";
+import { appendToJsonArrayFile } from "@jsonFileService";
 
 const DATA_DIRECTORY_NAME = "data";
 const MONTH_OFFSET = 1;

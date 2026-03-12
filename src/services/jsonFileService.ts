@@ -1,8 +1,5 @@
 import { open, stat } from "node:fs/promises";
-import {
-  ensureDataDirectoryExists,
-  FileSystemError,
-} from "@/services/fileSystemService";
+import { ensureDataDirectoryExists, FileSystemError } from "@fileSystemService";
 
 const JSON_FILE_FOOTER_LENGTH = 2;
 const JSON_INDENT_SPACES = 2;

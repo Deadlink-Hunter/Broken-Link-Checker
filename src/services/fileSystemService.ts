@@ -1,5 +1,5 @@
 import { mkdir } from "node:fs/promises";
-import { getYearMonthPath } from "@/services/urlRecordsService";
+import { getYearMonthPath } from "@urlRecordsService";
 
 export interface FileSystemError extends Error {
   code?: string;

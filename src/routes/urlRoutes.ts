@@ -1,8 +1,5 @@
 import { Router } from "express";
-import {
-  checkSingleUrl,
-  checkMultipleUrlsController,
-} from "@/controllers/url/urlController";
+import { checkSingleUrl, checkMultipleUrlsController } from "@controller";
 
 const router: Router = Router();
 

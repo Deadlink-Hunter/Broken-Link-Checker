@@ -3,8 +3,8 @@ import {
   checkUrl,
   checkMultipleUrls,
   UrlCheckResult,
-} from "@/services/urlService";
-import { appendResults, appendResult } from "@/services/urlRecordsService";
+} from "@urlService";
+import { appendResults, appendResult } from "@urlRecordsService";
 import {
   MAX_URLS_PER_REQUEST,
   HTTP_STATUS_BAD_REQUEST,

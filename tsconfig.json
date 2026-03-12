@@ -9,9 +9,15 @@
     "paths": {
       "@/*": ["*"],
       "@constant": ["constants/index.js"],
-      "@controller": ["controllers/urlController.js"],
+      "@controller": ["controllers/url/urlController.js"],
+      "@healthController": ["controllers/healthCheck/health.js"],
       "@route": ["routes/urlRoutes.js"],
+      "@healthRoutes": ["routes/healthRoutes.js"],
       "@service": ["services/urlService.js"],
+      "@urlService": ["services/urlService.js"],
+      "@urlRecordsService": ["services/urlRecordsService.js"],
+      "@jsonFileService": ["services/jsonFileService.js"],
+      "@fileSystemService": ["services/fileSystemService.js"],
       "@config": ["config/swagger.js"]
     },
     "strict": true,

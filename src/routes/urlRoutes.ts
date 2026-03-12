@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   checkSingleUrl,
   checkMultipleUrlsController,
-} from "@/controllers/url/urlController";
+} from "@controller";
 
 const router: Router = Router();
 

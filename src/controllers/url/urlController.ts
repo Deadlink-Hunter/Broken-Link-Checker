@@ -1,9 +1,5 @@
 import { Request, Response } from "express";
-import {
-  checkUrl,
-  checkMultipleUrls,
-  UrlCheckResult,
-} from "@urlService";
+import { checkUrl, checkMultipleUrls, UrlCheckResult } from "@urlService";
 import { appendResults, appendResult } from "@urlRecordsService";
 import {
   MAX_URLS_PER_REQUEST,

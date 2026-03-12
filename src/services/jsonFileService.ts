@@ -1,20 +1,20 @@
-import { open, stat } from 'node:fs/promises';
-import { ensureDataDirectoryExists, FileSystemError } from '@fileSystemService';
+import { open, stat } from "node:fs/promises";
+import { ensureDataDirectoryExists, FileSystemError } from "@fileSystemService";
 
 const JSON_FILE_FOOTER_LENGTH = 2;
 const JSON_INDENT_SPACES = 2;
 const SLICE_START_INDEX = 1;
 const SLICE_END_INDEX = -1;
-const ERROR_CODE_FILE_NOT_FOUND = 'ENOENT';
-const ERROR_MESSAGE_CREATE_FILE = 'Failed to create new file at';
-const ERROR_MESSAGE_UNEXPECTED_ERROR = 'Unexpected error accessing file at';
+const ERROR_CODE_FILE_NOT_FOUND = "ENOENT";
+const ERROR_MESSAGE_CREATE_FILE = "Failed to create new file at";
+const ERROR_MESSAGE_UNEXPECTED_ERROR = "Unexpected error accessing file at";
 
 const hasErrorCode = (error: unknown): error is FileSystemError => {
   return (
-    typeof error === 'object' &&
+    typeof error === "object" &&
     error !== null &&
-    'code' in error &&
-    typeof (error as FileSystemError).code === 'string'
+    "code" in error &&
+    typeof (error as FileSystemError).code === "string"
   );
 };
 
@@ -23,7 +23,7 @@ const appendToExistingFile = async (
   fileStats: { size: number },
   arrayContentWithoutBrackets: string,
 ): Promise<void> => {
-  const fileHandle = await open(filePath, 'r+');
+  const fileHandle = await open(filePath, "r+");
   const position = fileStats.size - JSON_FILE_FOOTER_LENGTH;
   const dataToAppend = `,\n  ${arrayContentWithoutBrackets}\n]`;
   try {
@@ -38,7 +38,7 @@ const writeNewFile = async (
   formattedJsonArray: string,
 ): Promise<void> => {
   await ensureDataDirectoryExists();
-  const fileHandle = await open(filePath, 'w');
+  const fileHandle = await open(filePath, "w");
   try {
     await fileHandle.write(formattedJsonArray);
   } finally {

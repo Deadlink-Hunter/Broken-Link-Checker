@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { checkSingleUrl, checkMultipleUrlsController } from '@controller';
+import { Router } from "express";
+import { checkSingleUrl, checkMultipleUrlsController } from "@controller";
 
 const router: Router = Router();
 
@@ -45,7 +45,7 @@ const router: Router = Router();
  *       500:
  *         description: Internal server error
  */
-router.post('/check-url', checkSingleUrl);
+router.post("/check-url", checkSingleUrl);
 
 /**
  * @swagger
@@ -106,6 +106,6 @@ router.post('/check-url', checkSingleUrl);
  *       500:
  *         description: Internal server error
  */
-router.post('/check-urls', checkMultipleUrlsController);
+router.post("/check-urls", checkMultipleUrlsController);
 
 export default router;

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc && tsc-alias", 
+    "build": "tsc && tsc-alias",
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "test": "vitest",
@@ -25,6 +25,7 @@
     "axios": "^1.6.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "express-rate-limit": "^8.3.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
@@ -41,14 +42,14 @@
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
+    "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "supertest": "^7.1.4",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.1.0",
     "typescript": "^5.2.2",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.0.15",
-    "husky": "^9.1.7"
+    "vitest": "^4.0.15"
   },
   "tsx": {
     "tsconfig": "./tsconfig.json"

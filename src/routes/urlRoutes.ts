@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { checkSingleUrl, checkMultipleUrlsController } from "@controller";
-import { rateLimiter } from "@/middleware/rateLimiter";
+import { rateLimiter } from "@/middleware/rateLimiter/rateLimiter";
 
 const router: Router = Router();
 router.use(rateLimiter);
@@ -43,6 +43,20 @@ router.use(rateLimiter);
  *                 error:
  *                   type: string
  *                   example: URL is required
+ *       429:
+ *         description: Too many requests - rate limit exceeded
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *                   example: Too many requests, please try again later.
+
  *       500:
  *         description: Internal server error
  */
@@ -104,6 +118,20 @@ router.post("/check-url", checkSingleUrl);
  *                 error:
  *                   type: string
  *                   example: URLs array is required
+ *       429:
+ *         description: Too many requests - rate limit exceeded
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *                   example: Too many requests, please try again later.
+
  *       500:
  *         description: Internal server error
  */

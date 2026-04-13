@@ -1,8 +1,15 @@
-import { describe, it, expect } from "vitest";
+import { beforeEach, describe, it, expect } from "vitest";
 import request, { Response } from "supertest";
 import app from "@/index";
+import { rateLimiter } from "@/middleware/rateLimiter";
+
+const TEST_IP = "::ffff:127.0.0.1";
 
 describe("Rate Limiter Middleware", () => {
+  beforeEach(() => {
+    rateLimiter.resetKey(TEST_IP);
+  });
+
   it("should return 429 after exceeding 30 requests per minute on /check-url", async () => {
     let res!: Response;
     for (let i = 0; i < 31; i++) {

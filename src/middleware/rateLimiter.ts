@@ -1,6 +1,6 @@
 import rateLimit from "express-rate-limit";
 
-const rateLimiter = rateLimit({
+export const rateLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   limit: 30,
   standardHeaders: true,
@@ -10,5 +10,3 @@ const rateLimiter = rateLimit({
     error: "Too many requests, please try again later.",
   },
 });
-
-export default rateLimiter;

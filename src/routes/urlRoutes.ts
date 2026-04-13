@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { checkSingleUrl, checkMultipleUrlsController } from "@controller";
-import rateLimiter from "@/middleware/rateLimiter";
+import { rateLimiter } from "@/middleware/rateLimiter";
 
 const router: Router = Router();
 router.use(rateLimiter);

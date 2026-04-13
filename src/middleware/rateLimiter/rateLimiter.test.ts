@@ -6,10 +6,12 @@ import { rateLimiter } from "@/middleware/rateLimiter/rateLimiter";
 const TEST_IP = "::ffff:127.0.0.1";
 
 async function assertRateLimit(endpoint: string, payload: object) {
-  let res!: Response;
-  for (let i = 0; i < 31; i++) {
+  let res: Response;
+  for (let i = 0; i < 30; i++) {
     res = await request(app).post(endpoint).send(payload);
+    expect(res.status).not.toBe(429);
   }
+  res = await request(app).post(endpoint).send(payload);
   expect(res.status).toBe(429);
   expect(res.body.success).toBe(false);
   expect(res.body.error).toBe("Too many requests, please try again later.");

@@ -21,3 +21,7 @@ export const URL_CHECK_COMPLETED = (working: number, broken: number) =>
   `URL check completed - ${working} working, ${broken} broken`;
 
 export const TEST_ENV = "test";
+
+export const URL_RATE_LIMIT_WINDOW_MS = 60 * 1000;
+export const URL_RATE_LIMIT_MAX_REQUESTS = 30;
+export const RATE_LIMIT_MESSAGE = "Too many requests, please try again later.";

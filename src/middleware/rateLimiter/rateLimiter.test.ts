@@ -1,20 +1,10 @@
-import express from "express";
 import { beforeEach, describe, it, expect } from "vitest";
 import request, { Response } from "supertest";
 import { rateLimiter } from "@/middleware/rateLimiter/rateLimiter";
 import { URL_RATE_LIMIT_MAX_REQUESTS, RATE_LIMIT_MESSAGE } from "@/constants";
+import app from "@/index";
 
 const TEST_IP = "127.0.0.1";
-
-const app = express();
-app.use(express.json());
-app.use(rateLimiter);
-app.post("/api/check-url", (_req, res) =>
-  res.status(200).json({ success: true }),
-);
-app.post("/api/check-urls", (_req, res) =>
-  res.status(200).json({ success: true }),
-);
 
 async function assertRateLimit(
   endpoint: string,

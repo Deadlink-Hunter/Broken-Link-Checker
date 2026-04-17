@@ -9,6 +9,7 @@ export const HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
 
 export const INVALID_URL_FORMAT = "Invalid URL format";
 export const FAILED_REQUEST = "Request failed";
+export const SOFT_404_DETECTED = "Page returned 404 content despite 200 status";
 export const URLS_ARRAY_REQUIRED = "URLs array is required";
 export const URL_WORKING = "URL check completed - URL is working";
 export const URL_BROKEN = "URL check completed - URL is broken";

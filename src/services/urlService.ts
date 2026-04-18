@@ -27,9 +27,9 @@ const isValidUrl = (url: string): boolean => {
 const isSoft404 = (response: AxiosResponse): boolean => {
   const contentType = response.headers["content-type"] || "";
   if (!contentType.includes("text/html")) return false;
-  if (!response.data.trim()) return false;
 
   const body: string = response.data;
+  if (typeof body !== "string" || !body.trim()) return false;
   const titleMatch = body.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   const title = titleMatch?.[1]?.toLowerCase() ?? "";
 

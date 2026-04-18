@@ -6,6 +6,7 @@ import {
   MAX_REDIRECTS,
   SOFT_404_DETECTED,
 } from "@constant";
+import { HTML_TITLE_REGEX } from "@/utils/regexUtils";
 
 export interface UrlCheckResult {
   url: string;
@@ -30,7 +31,7 @@ const isSoft404 = (response: AxiosResponse): boolean => {
 
   const body: string = response.data;
   if (typeof body !== "string" || !body.trim()) return false;
-  const titleMatch = body.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  const titleMatch = body.match(HTML_TITLE_REGEX);
   const title = titleMatch?.[1]?.toLowerCase() ?? "";
 
   const finalUrl = response.request?.res?.responseUrl ?? "";

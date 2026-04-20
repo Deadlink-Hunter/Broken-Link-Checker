@@ -1,14 +1,8 @@
-import { beforeAll, afterEach, afterAll, describe, it, expect } from "vitest";
-import { setupServer } from "msw/node";
+import { describe, it, expect } from "vitest";
 import { http, HttpResponse } from "msw";
 import { checkUrl } from "@urlService";
 import { SOFT_404_DETECTED } from "@constant";
-
-const server = setupServer();
-
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+import { server } from "@/mocks/server";
 
 const MOCK_URL = "https://mock-soft-404.com";
 

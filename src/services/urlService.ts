@@ -4,7 +4,9 @@ import {
   HTTP_TIMEOUT,
   INVALID_URL_FORMAT,
   MAX_REDIRECTS,
+  SOFT_404_DETECTED,
 } from "@constant";
+import { HTML_TITLE_REGEX } from "@/utils/regexUtils";
 
 export interface UrlCheckResult {
   url: string;
@@ -21,6 +23,24 @@ const isValidUrl = (url: string): boolean => {
   } catch {
     return false;
   }
+};
+
+const isSoft404 = (response: AxiosResponse): boolean => {
+  const contentType = response.headers["content-type"] || "";
+  if (!contentType.includes("text/html")) return false;
+
+  const body: string = response.data;
+  if (typeof body !== "string" || !body.trim()) return false;
+  const titleMatch = body.match(HTML_TITLE_REGEX);
+  const title = titleMatch?.[1]?.toLowerCase() ?? "";
+
+  const finalUrl = response.request?.res?.responseUrl ?? "";
+
+  return (
+    title.includes("404") ||
+    title.includes("not found") ||
+    finalUrl.includes("/404")
+  );
 };
 
 export const checkUrl = async (url: string): Promise<UrlCheckResult> => {
@@ -49,6 +69,16 @@ export const checkUrl = async (url: string): Promise<UrlCheckResult> => {
     });
 
     const responseTime = Date.now() - startTime;
+
+    if (isSoft404(response)) {
+      return {
+        url,
+        isBroken: true,
+        statusCode: response.status,
+        error: SOFT_404_DETECTED,
+        responseTime,
+      };
+    }
 
     return {
       url,

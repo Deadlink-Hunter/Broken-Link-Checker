@@ -1,9 +1,21 @@
-import { describe, it, expect } from "vitest";
+import { beforeEach, describe, it, expect } from "vitest";
+import { http, HttpResponse } from "msw";
 import request from "supertest";
 import app from "../../index";
 import { UrlCheckResult } from "@/services/urlService";
+import { server } from "@/mocks/server";
 
 describe("URL Controller Endpoints", () => {
+  beforeEach(() => {
+    server.use(
+      http.get("https://google.com", () =>
+        HttpResponse.html(
+          "<html><head><title>Google</title></head><body>ok</body></html>",
+        ),
+      ),
+    );
+  });
+
   describe("POST /api/check-url", () => {
     it("should return isBroken: false for a working URL", async () => {
       const res = await request(app)
@@ -15,6 +27,12 @@ describe("URL Controller Endpoints", () => {
     });
 
     it("should return isBroken: true for a broken URL", async () => {
+      server.use(
+        http.get("https://site-that-does-not-exist-123.com", () =>
+          HttpResponse.error(),
+        ),
+      );
+
       const res = await request(app)
         .post("/api/check-url")
         .send({ url: "https://site-that-does-not-exist-123.com" });

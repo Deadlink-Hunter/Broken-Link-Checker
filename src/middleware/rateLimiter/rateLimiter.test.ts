@@ -1,8 +1,10 @@
 import { beforeEach, describe, it, expect } from "vitest";
+import { http, HttpResponse } from "msw";
 import request, { Response } from "supertest";
 import { rateLimiter } from "@/middleware/rateLimiter/rateLimiter";
 import { URL_RATE_LIMIT_MAX_REQUESTS, RATE_LIMIT_MESSAGE } from "@/constants";
 import app from "@/index";
+import { server } from "@/mocks/server";
 
 const TEST_IP = "127.0.0.1";
 
@@ -25,6 +27,13 @@ async function assertRateLimit(
 describe("Rate Limiter Middleware", () => {
   beforeEach(() => {
     rateLimiter.resetKey(TEST_IP);
+    server.use(
+      http.get("https://example.com", () =>
+        HttpResponse.html(
+          "<html><head><title>Example</title></head><body>ok</body></html>",
+        ),
+      ),
+    );
   });
 
   it("should return 429 on /check-url after exceeding the limit", async () => {

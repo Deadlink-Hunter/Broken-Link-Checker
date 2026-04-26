@@ -15,6 +15,8 @@ export const URL_WORKING = "URL check completed - URL is working";
 export const URL_BROKEN = "URL check completed - URL is broken";
 export const ONE_URL_REQUIRED = "At least one URL is required";
 export const URL_REQUIRED = "URL is required";
+export const LOCALHOST_URL_MESSAGE =
+  "URL is not considered broken as it runs on localhost";
 export const MAXIMUM_URLS_ALLOWED = `Maximum ${MAX_URLS_PER_REQUEST} URLs allowed per request`;
 export const INTERNAL_SERVER_ERROR = "Internal server error";
 export const HEALTH_CHECK_MESSAGE = "URL Checker API is running";

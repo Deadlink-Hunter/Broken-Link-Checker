@@ -8,6 +8,7 @@ import {
   LOCALHOST_URL_MESSAGE,
   URL_WORKING,
   URL_BROKEN,
+  LOCALHOST_URLS,
 } from "@constant";
 import { HTML_TITLE_REGEX } from "@/utils/regexUtils";
 
@@ -30,12 +31,12 @@ const isValidUrl = (url: string): boolean => {
 };
 
 const isLocalhostUrl = (url: string): boolean => {
-  const { hostname } = new URL(url);
-  return (
-    hostname === "localhost" ||
-    hostname === "127.0.0.1" ||
-    hostname === "::1"
-  );
+  try {
+    const { hostname } = new URL(url);
+    return LOCALHOST_URLS.has(hostname);
+  } catch {
+    return false;
+  }
 };
 
 const isSoft404 = (response: AxiosResponse): boolean => {

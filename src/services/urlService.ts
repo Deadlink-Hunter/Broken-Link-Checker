@@ -26,7 +26,7 @@ const isValidUrl = (url: string): boolean => {
 };
 
 const isSoft404 = (response: AxiosResponse): boolean => {
-  const contentType = response.headers["content-type"] || "";
+  const contentType = String(response.headers["content-type"] || "");
   if (!contentType.includes("text/html")) return false;
 
   const body: string = response.data;

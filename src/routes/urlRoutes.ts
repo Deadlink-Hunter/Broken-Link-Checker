@@ -105,6 +105,9 @@ router.post("/check-url", checkSingleUrl);
  *                         working:
  *                           type: number
  *                           description: Number of working URLs
+ *                         scanDuration:
+ *                           type: number
+ *                           description: Total scan duration in milliseconds
  *       400:
  *         description: Bad request - Invalid input
  *         content:

@@ -62,6 +62,8 @@ describe("URL Controller Endpoints", () => {
       expect(res.status).toBe(200);
       expect(Array.isArray(results)).toBe(true);
       expect(res.body.data.summary.total).toBe(urls.length);
+      expect(typeof res.body.data.summary.scanDuration).toBe("number");
+      expect(res.body.data.summary.scanDuration).toBeGreaterThanOrEqual(0);
 
       results.forEach((resultItem) => {
         if (resultItem.url === validUrl) {

@@ -6,8 +6,6 @@ import {
   HTTP_STATUS_BAD_REQUEST,
   HTTP_STATUS_INTERNAL_SERVER_ERROR,
   URL_REQUIRED,
-  URL_BROKEN,
-  URL_WORKING,
   INTERNAL_SERVER_ERROR,
   URLS_ARRAY_REQUIRED,
   ONE_URL_REQUIRED,
@@ -38,7 +36,6 @@ export const checkSingleUrl = async (
     res.status(200).json({
       success: true,
       data: result,
-      message: result.isBroken ? URL_BROKEN : URL_WORKING,
     });
   } catch (error: any) {
     res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({

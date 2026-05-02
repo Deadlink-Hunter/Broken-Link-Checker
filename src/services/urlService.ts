@@ -5,6 +5,10 @@ import {
   INVALID_URL_FORMAT,
   MAX_REDIRECTS,
   SOFT_404_DETECTED,
+  LOCALHOST_URL_MESSAGE,
+  URL_WORKING,
+  URL_BROKEN,
+  LOCALHOST_URLS,
 } from "@constant";
 import { HTML_TITLE_REGEX } from "@/utils/regexUtils";
 
@@ -14,12 +18,22 @@ export interface UrlCheckResult {
   statusCode?: number;
   error?: string;
   responseTime?: number;
+  message?: string;
 }
 
 const isValidUrl = (url: string): boolean => {
   try {
     new URL(url);
     return true;
+  } catch {
+    return false;
+  }
+};
+
+const isLocalhostUrl = (url: string): boolean => {
+  try {
+    const { hostname } = new URL(url);
+    return LOCALHOST_URLS.includes(hostname);
   } catch {
     return false;
   }
@@ -52,6 +66,15 @@ export const checkUrl = async (url: string): Promise<UrlCheckResult> => {
         url,
         isBroken: true,
         error: INVALID_URL_FORMAT,
+        message: URL_BROKEN,
+      };
+    }
+
+    if (isLocalhostUrl(url)) {
+      return {
+        url,
+        isBroken: false,
+        message: LOCALHOST_URL_MESSAGE,
       };
     }
 
@@ -77,6 +100,7 @@ export const checkUrl = async (url: string): Promise<UrlCheckResult> => {
         statusCode: response.status,
         error: SOFT_404_DETECTED,
         responseTime,
+        message: URL_BROKEN,
       };
     }
 
@@ -85,6 +109,7 @@ export const checkUrl = async (url: string): Promise<UrlCheckResult> => {
       isBroken: false,
       statusCode: response.status,
       responseTime,
+      message: URL_WORKING,
     };
   } catch (error: any) {
     const responseTime = Date.now() - startTime;
@@ -95,6 +120,7 @@ export const checkUrl = async (url: string): Promise<UrlCheckResult> => {
       statusCode: error.response?.status,
       error: error.message || FAILED_REQUEST,
       responseTime,
+      message: URL_BROKEN,
     };
   }
 };

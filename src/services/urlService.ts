@@ -33,7 +33,7 @@ const isValidUrl = (url: string): boolean => {
 const isLocalhostUrl = (url: string): boolean => {
   try {
     const { hostname } = new URL(url);
-    return LOCALHOST_URLS.has(hostname);
+    return LOCALHOST_URLS.includes(hostname);
   } catch {
     return false;
   }
